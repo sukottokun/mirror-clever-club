@@ -6,17 +6,22 @@ name: Pull from pantheon
 on:
   # Triggers the workflow to run every 5 minutes
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/10 * * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  auto-pull:
-    name: PullPantheonOrigin
-    # runs-on: self-hosted
+  repo-sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          echo "test"
+        with:
+          persist-credentials: false
+      - name: repo-sync
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "ssh://codeserver.dev.b6026811-5080-4cf8-b413-9a7eeffaaa61@codeserver.dev.b6026811-5080-4cf8-b413-9a7eeffaaa61.drush.in:2222/~/repository.git"
+          source_branch: "master"
+          destination_branch: "main"
+          github_token: ${{ secrets.PAT }}
