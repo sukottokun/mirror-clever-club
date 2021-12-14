@@ -24,4 +24,4 @@ jobs:
           source_repo: "ssh://codeserver.dev.b6026811-5080-4cf8-b413-9a7eeffaaa61@codeserver.dev.b6026811-5080-4cf8-b413-9a7eeffaaa61.drush.in:2222/~/repository.git"
           source_branch: "master"
           destination_branch: "main"
-          github_token: ${{ secrets.PAT }}
+          github_token: ${{ secrets.SCOTTS_SSH_PRIVATE_KEY }}
