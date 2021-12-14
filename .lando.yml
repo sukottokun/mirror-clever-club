@@ -1,0 +1,6 @@
+name: pantheon-clever-club
+recipe: pantheon
+config:
+  framework: drupal8
+  site: pantheon-clever-club
+  id: b6026811-5080-4cf8-b413-9a7eeffaaa61
