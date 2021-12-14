@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Pull from pantheon
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow to run every 5 minutes
+  schedule:
+    - cron: "*/5 * * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  auto-pull:
+    name: PullPantheonOrigin
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          terminus auth:login --machine-token=ZmK6dqbK38iLdsIfy3gjJfu0sl02LNEG-0qqPimW-EoKJ
+          git clone ssh://codeserver.dev.b6026811-5080-4cf8-b413-9a7eeffaaa61@codeserver.dev.b6026811-5080-4cf8-b413-9a7eeffaaa61.drush.in:2222/~/repository.git
+          git push --mirror https://github.com/sukottokun/mirror-clever-club.git
+        working-directory: /home/user/repos/pantheon-clever-club
